@@ -17,6 +17,7 @@ const Nav = ({ history }) => {
   // const { cartItems } = cart;
   const [nav, setNav] = useState(false);
   const Nav = useRef(null);
+  const [open, setOpen] = useState(false);
 
   //search
   const searchRef = useRef(null);
@@ -46,6 +47,7 @@ const Nav = ({ history }) => {
     const links = document.querySelectorAll(".navLinks li");
     navLinks.current.classList.toggle("burgerActive");
     rightItems.current.classList.toggle("burgerActive");
+    // setOpen(false);
     //Animate Links
     links.forEach((link, index) => {
       if (link.style.animation) {
@@ -61,29 +63,13 @@ const Nav = ({ history }) => {
     //Burger Animation
     Buric.current.classList.toggle("toggle");
   };
+
   const onChangeBack = () => {
     if (window.scrollY >= 60) {
       setNav(true);
     } else setNav(false);
   };
   window.addEventListener("scroll", onChangeBack);
-
-  // useEffect(() => {
-  //   const cart = cartItems.length ? cartItems.length : 0;
-  //   setincart(cart);
-  //   return () => {
-  //     setincart(0);
-  //   };
-  // }, [cart]);
-
-  // const dispatch = useDispatch();
-  // const userLogin = useSelector((state) => state.userLogin);
-  // const { userInfo } = userLogin;
-
-  // const logoutHandler = () => {
-  //   // dispatch(logout());
-  //   console.log(it)
-  // };
 
   return (
     <nav ref={Nav} className={`nav ${nav ? "active" : ""}`}>
@@ -119,21 +105,6 @@ const Nav = ({ history }) => {
         )}
         {/* <Link to="/cart"> */}
         <IoIosCart className="iconCart" size="26" />
-        {/* {userInfo && !userInfo.isAdmin && ( */}
-        {/* <div className="inCart">{incart}</div> */}
-        {/* </Link>  */}
-        {/* {userInfo ? ( */}
-        {/* <div className="ic_sett_dis">
-              <Link to="/profile">
-                <IoIosPerson size="25" className="settingIcon" />
-              </Link>
-              <IoIosLogOut
-                size="28"
-                className="displayIcon"
-                onClick={logoutHandler}
-              />
-            </div> */}
-        {/* ) : ( */}
         <Link to="/login">
           {" "}
           <div
@@ -151,24 +122,6 @@ const Nav = ({ history }) => {
           </div>
         </Link>
         {/* )} */}
-        {/* {userInfo && userInfo.isAdmin && (
-            <Menu>
-              <MenuButton as={Button} rightIcon={<IoMdArrowDropdown />}>
-                Admin
-              </MenuButton>
-              <MenuList>
-                <MenuItem>
-                  <Link to="/admin/userlist">Users</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/admin/productlist">Products</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/admin/orderlist">Orders</Link>
-                </MenuItem>
-              </MenuList>
-            </Menu>
-          )} */}
       </div>
     </nav>
     // </Router>
